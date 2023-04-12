@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ShoppingCartAssignment1.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-primary" })
+</p>
+<table class="display" id="abc">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PPrice)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.PImage)" width="80" height="80" class="img-rounded" />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PId }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PId }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

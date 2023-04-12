@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ShoppingCartAssignment1.Models.Cart>
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Show</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PImage)
+        </th>
+        <th>
+            <p>Quantity</p>
+        </th>
+        <th>
+            
+        </th>
+        <th>
+            <p>TotalPrice</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PDescription)
+        </td>
+        <td class="price">
+            @Html.DisplayFor(modelItem => item.PPrice)
+        </td>
+        <td>
+            <img src="@Url.Content(item.PImage)" width="80" height="80" class="img-rounded" />
+        </td>
+        <td>
+            <input type="number" min="1" max="10" value="1" class="quantity"/>
+        </td>
+        <td>
+            <button onclick="TotalPrice()">Total</button>
+        </td>
+        <td>
+            <p class="TotalPrice"></p>
+        </td>
+        <td>
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="justify-content-end">
+    <label>Total:</label>
+    <p class="TotalSum"></p>
+</div>
+<script type="text/javascript" >
+    function TotalPrice() {
+        var price = $(".price").text();
+        var quantity = $(".quantity").val();
+        var total = parseInt(price) * quantity;
+        console.log(price, quantity, total);
+
+        $(".TotalPrice").html(total);
+        $(".TotalSum").html(total);
+    }
+</script>
